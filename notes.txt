@@ -1,0 +1,19 @@
+A note about solving mongoose connection issues
+Solving mongoose.connect issues
+If you are using the latest versions of Node.js with mongoose, and you get a connection refused ECONNREFUSED error message when connecting your app to the database, then you might need to change localhost to 127.0.0.1 in your mongoose.connect database connection string:
+
+mongoose.connect('mongodb://127.0.0.1:27017/your_database_name_here')
+Also, in the currently newest mongoose versions you don't need to pass the options object as the second argument to the mongoose.connect method.
+
+Therefore, when using the newest mongoose versions, your mongoose.connect call can look just like shown above, without adding an object with options such as useNewUrlParser, useUnifiedTopology, useCreateIndex, or useFindAndModify.
+
+strictQuery warning message
+You might see this warning message with the newest mongoose versions when starting your app:
+
+DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` by default in Mongoose 7. Use `mongoose.set('strictQuery', false);` if you want to prepare for this change. Or use `mongoose.set('strictQuery', true);` to suppress this warning.
+
+That warning message itself shouldn't affect the functionality of our course apps, but you could make it disappear by adding the mentioned mongoose.set('strictQuery', true); line above the mongoose.connect line in your code.
+
+Moving forward, keep a note of all this and make sure to use the solutions presented in this lecture note whenever you encounter the described issues in any of the future course lectures.
+
+Also, please reach out in the course Q&A boards if you need any further help!
